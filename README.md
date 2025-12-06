@@ -147,8 +147,11 @@ ecommerce-dashboard/
 │   ├── layout.tsx           # Root layout
 │   └── page.tsx             # Home page
 ├── components/              # Reusable React components
-│   ├── ui/                  # UI components (buttons, inputs, etc.)
-│   └── ...                  # Feature-specific components
+│   ├── ui/                  # UI components from shadcn/ui (buttons, inputs, etc.)
+│   ├── atoms/               # UI component with smallest (password inputs, etc.)
+|   ├── molecules/           # UI component with medium (cards, etc.)
+|   ├── organisms/           # UI component with large (tables, page sections, etc.)
+|   ├── templates/           # UI component with largest (sidebar, etc.)
 ├── config/                  # Configuration files
 ├── hooks/                   # Custom React hooks
 ├── lib/                     # Utility functions and libraries
