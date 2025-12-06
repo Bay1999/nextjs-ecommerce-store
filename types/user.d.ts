@@ -2,7 +2,7 @@ export interface User {
   name: string,
   email: string,
   phone_number: string,
-  is_admin: number,
+  is_admin: boolean,
   avatar?: string,
   address_1?: string,
   address_2?: string,

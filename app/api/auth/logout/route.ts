@@ -1,28 +1,23 @@
-import { loginUser } from "@/lib/services/authService";
-import { storeToken } from "@/lib/services/middleware/handleToken";
+import { logoutUser } from "@/lib/services/authService";
+import { removeToken } from "@/lib/services/middleware/handleToken";
 import { NextResponse } from "next/server";
 
 export const POST = async (request: Request) => {
   try {
-    const body = await request.json();
-
-    const response = await loginUser(body);
+    const response = await logoutUser(request);
 
     if(response.status === "error") {
       return NextResponse.json(response, { status: response.statusCode || 400 });
     }
+    
+    const nextResponse = NextResponse.json(response);
 
-    const nextResponse = NextResponse.json({
-      ...response,
-      isAdmin: response.user.is_admin
-    });
-
-    storeToken(response, nextResponse);
+    removeToken(nextResponse);
     
     return nextResponse;
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Server Error";
     return NextResponse.json({ message }, { status: 500 });
-  }  
+  }
 }

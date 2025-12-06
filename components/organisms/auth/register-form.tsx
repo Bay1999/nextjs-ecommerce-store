@@ -8,9 +8,8 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { SubmitHandler, useForm } from "react-hook-form"
-import useRegister from "@/hooks/auth/useRegister"
+import { useRegister } from "@/hooks/auth/useRegister"
 import { RegisterForm as TRegisterForm } from "@/types/auth";
-import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "@/components/ui/input-group"
 import { InputPassword } from "@/components/atoms/input-password"
 
 interface RegisterFormProps extends React.ComponentPropsWithoutRef<"form"> {

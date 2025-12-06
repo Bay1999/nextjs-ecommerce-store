@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
-export default function useRegister() {
+export const useRegister = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
@@ -18,11 +18,11 @@ export default function useRegister() {
       body: JSON.stringify(data),
     })
 
-    setIsLoading(false);
     
     const responseData = await response.json();
-
+    
     if (!response.ok) {
+      setIsLoading(false);
       const errorMessage = responseData.message ?? "Failed to register";
       toast.error(errorMessage);
       throw new Error(errorMessage);

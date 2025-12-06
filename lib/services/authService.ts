@@ -19,3 +19,16 @@ export async function loginUser(data: LoginForm): Promise<ApiResponse<AuthRespon
     body: data
   })
 }
+
+export function logoutUser(request: Request) {
+  const token = request.headers.get("access_token");
+
+  return apiRequest<ApiResponse<AuthResponse, "user">, LoginForm>({
+    url: `${API_BASE_URL}/logout`,
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    method: "POST",
+  })
+}

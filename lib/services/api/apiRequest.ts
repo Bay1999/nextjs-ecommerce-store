@@ -1,7 +1,7 @@
 import { ApiRequestOptions, QueryParams } from "@/types/api";
 import axios, { AxiosError } from "axios";
 
-export async function apiRequest<TResponse, TPayload, TParams = QueryParams>({
+export async function apiRequest<TResponse, TPayload = unknown, TParams = QueryParams>({
   url,
   method = "GET",
   body,

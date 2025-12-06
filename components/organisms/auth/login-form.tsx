@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input"
 import { InputPassword } from "@/components/atoms/input-password";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { LoginForm as TLoginForm } from "@/types/auth";
-import useLogin from "@/hooks/auth/useLogin";
+import { useLogin } from "@/hooks/auth/useLogin";
 
 interface LoginFormProps extends React.ComponentPropsWithoutRef<"form"> {
   handleToggle: (e: React.MouseEvent<HTMLAnchorElement>) => void;
