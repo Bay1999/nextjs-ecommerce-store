@@ -1,21 +1,8 @@
 "use client"
-
-import { ChevronRight, type LucideIcon } from "lucide-react"
-
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible"
 import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
 import { HasChildMenu, NoChildMenu } from "./molecules/sidebarMenu"
 import { SidebarMenu as SidebarMenuType } from "@/types/auth"
@@ -28,7 +15,11 @@ export function NavMain({
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item, index) => (
-          item.items ? HasChildMenu(item, index) : NoChildMenu(item, index)
+          item.items ? (
+            <HasChildMenu key={index} item={item} />
+          ) : (
+            <NoChildMenu key={index} item={item} />
+          )
         ))}
       </SidebarMenu>
     </SidebarGroup>

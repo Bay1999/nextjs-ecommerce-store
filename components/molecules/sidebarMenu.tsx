@@ -2,17 +2,20 @@ import { ChevronRight } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/collapsible";
 import { SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem } from "../ui/sidebar";
 import { SidebarMenu } from "@/types/auth";
+import { useActivePage } from "@/hooks/global/useActivePage";
 
-export const HasChildMenu = (item: SidebarMenu, index: number) => {
+export function HasChildMenu({ item }: { item: SidebarMenu }) {
+
+  const activeMenu = useActivePage((state) => state.activePage)
+
   return (
     <Collapsible
-      key={index}
       asChild
-      defaultOpen={item.isActive}
+      defaultOpen={item.items?.map((item) => item.id).includes(activeMenu) || false}
       className="group/collapsible"
     >
       <SidebarMenuItem>
-        <CollapsibleTrigger asChild>
+        <CollapsibleTrigger className={activeMenu === item.id ? "bg-neutral-800 text-white" : ""} asChild>
           <SidebarMenuSubButton>
             {item.icon && <item.icon />}
             <span>{item.title}</span>
@@ -37,10 +40,12 @@ export const HasChildMenu = (item: SidebarMenu, index: number) => {
   );
 }
 
-export const NoChildMenu = (item: SidebarMenu, index: number) => {
+export function NoChildMenu({ item }: { item: SidebarMenu }) {
+  const activeMenu = useActivePage((state) => state.activePage)
+
   return (
-    <SidebarMenuItem key={index}>
-      <SidebarMenuButton asChild>
+    <SidebarMenuItem>
+      <SidebarMenuButton className={activeMenu === item.id ? "bg-neutral-800 text-white" : ""} asChild>
         <a href={item.url}>
           {item.icon && <item.icon />}
           <span>{item.title}</span>
