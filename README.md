@@ -88,21 +88,9 @@ pnpm install
 
 Create a `.env.local` file in the root directory:
 
-```bash
-cp .env.example .env.local
-```
-
-2. **Configure environment variables**
-
-Edit `.env.local` and add the following variables:
-
 ```env
-# API Configuration
-NEXT_PUBLIC_API_URL=http://localhost:8000/api
-NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
-
-# Optional: Add other environment-specific variables
-NODE_ENV=development
+API_BASE_URL=http://127.0.0.1:8000/api/v1
+NEXT_PUBLIC_APP_ENV=development
 ```
 
 > **Note**: Replace `http://localhost:8000` with your backend API URL if different.
