@@ -33,6 +33,9 @@ import { useState } from "react"
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "./ui/dialog"
 import { Button } from "./ui/button"
 import { useLogout } from "@/hooks/auth/useLogout"
+import { useLoginData } from "@/hooks/auth/useLoginData"
+import { Skeleton } from "./ui/skeleton"
+import { capitalizeInitials } from "@/lib/utils"
 
 export function NavUser({
   user,
@@ -46,6 +49,7 @@ export function NavUser({
   const { isMobile } = useSidebar()
   const [openDialog, setOpenDialog] = useState(false)
   const { logout, isLoading } = useLogout();
+  const { loginData } = useLoginData();
 
   return (
     <>
@@ -58,13 +62,32 @@ export function NavUser({
                 className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
               >
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                  {
+                    loginData ? (
+                      <>
+                        <AvatarImage src={user.avatar} alt={user.name} />
+                        <AvatarFallback className="rounded-lg">{capitalizeInitials(loginData.name)}</AvatarFallback>
+                      </>
+                    ) : (
+                      <>
+                        <Skeleton className="h-full w-full" />
+                      </>
+                    )
+                  }
                 </Avatar>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
-                  <span className="truncate text-xs">{user.email}</span>
-                </div>
+                {
+                  loginData ? (
+                    <div className="grid flex-1 text-left text-sm leading-tight">
+                      <span className="truncate font-medium">{loginData.name}</span>
+                      <span className="truncate text-xs">{loginData.email}</span>
+                    </div>
+                  ) : (
+                    <div className="grid flex-1 gap-2 text-left text-sm leading-tight">
+                      <Skeleton className="h-4 w-full" />
+                      <Skeleton className="h-4 w-full" />
+                    </div>
+                  )
+                }
                 <ChevronsUpDown className="ml-auto size-4" />
               </SidebarMenuButton>
             </DropdownMenuTrigger>

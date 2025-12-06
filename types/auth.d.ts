@@ -10,3 +10,12 @@ export interface LoginForm {
     email: string;
     password: string;
 }
+
+export interface SidebarMenu {
+  id: string;
+  title: string;
+  url: string;
+  icon?: LucideIcon;
+  isActive?: boolean;
+  items?: SidebarMenu[]
+}

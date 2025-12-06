@@ -1,7 +1,10 @@
+"use server";
+
 import { LoginForm, RegisterForm } from "@/types/auth";
 import { apiRequest } from "./api/apiRequest";
 import { API_BASE_URL } from "@/config/common";
 import { ApiResponse, AuthResponse } from "@/types/api";
+import { cookies } from "next/headers";
 
 export async function registerUser(data: RegisterForm): Promise<ApiResponse<AuthResponse, "user">> {
 
@@ -20,7 +23,7 @@ export async function loginUser(data: LoginForm): Promise<ApiResponse<AuthRespon
   })
 }
 
-export function logoutUser(request: Request) {
+export async function logoutUser(request: Request) {
   const token = request.headers.get("access_token");
 
   return apiRequest<ApiResponse<AuthResponse, "user">, LoginForm>({
@@ -31,4 +34,16 @@ export function logoutUser(request: Request) {
     },
     method: "POST",
   })
+}
+
+export async function getUserDataCookie() {
+  const cookieStore = await cookies();
+
+  const dataUser = cookieStore.get("user")?.value || null;
+
+  if(!dataUser) {
+    return null;
+  }
+
+  return JSON.parse(dataUser);
 }
