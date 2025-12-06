@@ -68,8 +68,8 @@ Before you begin, ensure you have the following installed:
 1. **Clone the repository**
 
 ```bash
-git clone <your-repository-url>
-cd ecommerce-dashboard
+git clone https://github.com/Bay1999/nextjs-ecommerce-store.git
+cd nextjs-ecommerce-store
 ```
 
 2. **Install dependencies**
