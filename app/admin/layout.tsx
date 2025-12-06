@@ -2,6 +2,7 @@
 import { AppSidebar } from "@/components/app-sidebar";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useBreadcrumbs } from "@/hooks/global/useBreadcrumbs";
 import { Separator } from "@radix-ui/react-separator";
 import React from "react";
@@ -23,23 +24,29 @@ export default function mainLayout({ children }: { children: React.ReactNode }) 
             />
             <Breadcrumb>
               <BreadcrumbList>
-                {breadcrumbs.map((breadcrumb, index) => (
-                  <>
-                    <BreadcrumbItem key={index}>
-                      {breadcrumb.href ? (
-                        <BreadcrumbLink href={breadcrumb.href}>
-                          {breadcrumb.title}
-                        </BreadcrumbLink>
-                      ) : (
-                        <BreadcrumbPage>{breadcrumb.title}</BreadcrumbPage>
-                      )}
-                    </BreadcrumbItem>
+                {
+                  breadcrumbs?.length > 0 ? (
+                    breadcrumbs.map((breadcrumb, index) => (
+                      <React.Fragment key={index}>
+                        <BreadcrumbItem>
+                          {breadcrumb.href ? (
+                            <BreadcrumbLink href={breadcrumb.href}>
+                              {breadcrumb.title}
+                            </BreadcrumbLink>
+                          ) : (
+                            <BreadcrumbPage>{breadcrumb.title}</BreadcrumbPage>
+                          )}
+                        </BreadcrumbItem>
 
-                    {index < breadcrumbs.length - 1 && (
-                      <BreadcrumbSeparator />
-                    )}
-                  </>
-                ))}
+                        {index < breadcrumbs.length - 1 && (
+                          <BreadcrumbSeparator />
+                        )}
+                      </React.Fragment>
+                    ))
+                  ) : (
+                    <Skeleton className="h-4 w-20" />
+                  )
+                }
               </BreadcrumbList>
             </Breadcrumb>
           </div>

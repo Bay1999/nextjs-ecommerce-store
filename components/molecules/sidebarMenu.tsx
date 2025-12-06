@@ -15,7 +15,7 @@ export function HasChildMenu({ item }: { item: SidebarMenu }) {
       className="group/collapsible"
     >
       <SidebarMenuItem>
-        <CollapsibleTrigger className={activeMenu === item.id ? "bg-neutral-800 text-white" : ""} asChild>
+        <CollapsibleTrigger className={`${activeMenu === item.id ? "bg-neutral-800 text-white" : ""} cursor-pointer`} asChild>
           <SidebarMenuSubButton>
             {item.icon && <item.icon />}
             <span>{item.title}</span>

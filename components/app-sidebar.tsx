@@ -2,8 +2,8 @@
 
 import * as React from "react"
 import {
+  BookMarked,
   Command,
-  FileSearchCorner,
   LayoutDashboard,
   Store,
 } from "lucide-react"
@@ -57,7 +57,7 @@ const data = {
       id: "RP",
       title: "Reports",
       url: "#",
-      icon: FileSearchCorner,
+      icon: BookMarked,
       isActive: false,
     }
   ]
