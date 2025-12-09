@@ -1,10 +1,10 @@
 "use client"
 import { AppSidebar } from "@/components/app-sidebar";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useBreadcrumbs } from "@/hooks/global/useBreadcrumbs";
-import { Separator } from "@radix-ui/react-separator";
 import React from "react";
 
 export default function mainLayout({ children }: { children: React.ReactNode }) {
