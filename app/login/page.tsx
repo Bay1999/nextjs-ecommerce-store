@@ -1,13 +1,13 @@
 "use client"
 import { GalleryVerticalEnd } from "lucide-react"
 
-import { LoginForm } from "@/components/organisms/auth/login-form"
+import LoginForm from "@/components/organisms/auth/login-form"
 import Image from "next/image"
-import { RegisterForm } from "@/components/organisms/auth/register-form"
+import RegisterForm from "@/components/organisms/auth/register-form"
 import { useToogle } from "@/hooks/useToogle"
 import { Toaster } from "@/components/ui/sonner"
 
-export default function LoginPage() {
+const LoginPage = () => {
 
   const { isOpen, toggle } = useToogle();
 
@@ -52,3 +52,5 @@ export default function LoginPage() {
     </>
   )
 }
+
+export default LoginPage;

@@ -7,8 +7,9 @@ import { useActivePage } from "@/hooks/global/useActivePage"
 import { useEffect } from "react"
 import { useBreadcrumbs } from "@/hooks/global/useBreadcrumbs"
 import { BREADCRUMBS } from "@/config/common"
+import AdminContentPage from "@/components/molecules/adminContentPage"
 
-export default function page() {
+const page = () => {
 
   const setActivePage = useActivePage((state) => state.setActivePage)
   const setBreadcrumbs = useBreadcrumbs((state) => state.setBreadcrumbs)
@@ -25,16 +26,11 @@ export default function page() {
   }, [setActivePage, setBreadcrumbs])
 
   return (
-    <div className="flex flex-1 flex-col">
-      <div className="@container/main flex flex-1 flex-col gap-2">
-        <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-          <SectionCards />
-          {/* <div className="px-4 lg:px-6">
-            <ChartAreaInteractive />
-          </div> */}
-          <DataTable data={data} />
-        </div>
-      </div>
-    </div>
+    <AdminContentPage>
+      <SectionCards />
+      <DataTable data={data} />
+    </AdminContentPage>
   )
 }
+
+export default page;

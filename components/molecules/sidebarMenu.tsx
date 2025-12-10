@@ -3,23 +3,27 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/colla
 import { SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem } from "../ui/sidebar";
 import { SidebarMenu } from "@/types/auth";
 import { useActivePage } from "@/hooks/global/useActivePage";
+import Link from "next/link";
 
 export function HasChildMenu({ item }: { item: SidebarMenu }) {
 
   const activeMenu = useActivePage((state) => state.activePage)
 
+  const activeItem = item.items?.find((item) => item.id === activeMenu) ? true : false;
+
   return (
     <Collapsible
       asChild
-      defaultOpen={item.items?.map((item) => item.id).includes(activeMenu) || false}
+      defaultOpen={activeItem}
       className="group/collapsible"
     >
       <SidebarMenuItem>
-        <CollapsibleTrigger className={`${activeMenu === item.id ? "bg-neutral-800 text-white" : ""} cursor-pointer`} asChild>
+        <CollapsibleTrigger
+          className={`${activeItem ? "bg-neutral-800 active:bg-neutral-700 text-white active:text-white" : ""} cursor-pointer`} asChild>
           <SidebarMenuSubButton>
-            {item.icon && <item.icon />}
+            {item.icon && <item.icon className={`${activeItem ? "!text-white" : ""}`} />}
             <span>{item.title}</span>
-            <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+            <ChevronRight className={`${activeItem ? "!text-white" : ""} ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90`} />
           </SidebarMenuSubButton>
         </CollapsibleTrigger>
         <CollapsibleContent>
@@ -27,9 +31,9 @@ export function HasChildMenu({ item }: { item: SidebarMenu }) {
             {item.items?.map((subItem) => (
               <SidebarMenuSubItem key={subItem.title}>
                 <SidebarMenuSubButton asChild>
-                  <a href={subItem.url}>
+                  <Link href={subItem.url}>
                     <span>{subItem.title}</span>
-                  </a>
+                  </Link>
                 </SidebarMenuSubButton>
               </SidebarMenuSubItem>
             ))}
@@ -46,10 +50,10 @@ export function NoChildMenu({ item }: { item: SidebarMenu }) {
   return (
     <SidebarMenuItem>
       <SidebarMenuButton className={activeMenu === item.id ? "bg-neutral-800 text-white" : ""} asChild>
-        <a href={item.url}>
+        <Link href={item.url}>
           {item.icon && <item.icon />}
           <span>{item.title}</span>
-        </a>
+        </Link>
       </SidebarMenuButton>
     </SidebarMenuItem>
   );

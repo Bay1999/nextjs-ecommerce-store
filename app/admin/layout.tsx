@@ -7,7 +7,7 @@ import { useBreadcrumbs } from "@/hooks/global/useBreadcrumbs";
 import { Separator } from "@radix-ui/react-separator";
 import React from "react";
 
-export default function mainLayout({ children }: { children: React.ReactNode }) {
+const mainLayout = ({ children }: { children: React.ReactNode }) => {
 
   const breadcrumbs = useBreadcrumbs((state) => state.breadcrumbs)
 
@@ -57,3 +57,5 @@ export default function mainLayout({ children }: { children: React.ReactNode }) 
   )
 
 }
+
+export default mainLayout;

@@ -7,7 +7,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { InputPassword } from "@/components/atoms/input-password";
+import InputPassword from "@/components/atoms/inputPassword";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { LoginForm as TLoginForm } from "@/types/auth";
 import { useLogin } from "@/hooks/auth/useLogin";
@@ -16,11 +16,11 @@ interface LoginFormProps extends React.ComponentPropsWithoutRef<"form"> {
   handleToggle: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
-export function LoginForm({
+const LoginForm = ({
   handleToggle,
   className,
   ...props
-}: LoginFormProps) {
+}: LoginFormProps) => {
 
   const {
     register,
@@ -92,3 +92,5 @@ export function LoginForm({
     </form>
   )
 }
+
+export default LoginForm;

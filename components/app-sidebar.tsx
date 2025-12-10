@@ -30,7 +30,7 @@ const data = {
     {
       id: "DA",
       title: "Dashboard",
-      url: "#",
+      url: "/admin/dashboard",
       icon: LayoutDashboard,
       isActive: true,
     },
@@ -44,7 +44,7 @@ const data = {
         {
           id: "ST-PR",
           title: "Products",
-          url: "#",
+          url: "/admin/store/products",
         },
         {
           id: "ST-OR",

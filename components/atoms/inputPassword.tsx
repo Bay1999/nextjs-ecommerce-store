@@ -2,12 +2,12 @@ import { Eye, EyeClosed } from "lucide-react";
 import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "@/components/ui/input-group"
 import { useState } from "react";
 
-function InputPassword({
+const InputPassword = ({
   errorMessage,
   ...props
 }: {
   errorMessage?: string;
-} & React.ComponentPropsWithoutRef<"input">) {
+} & React.ComponentPropsWithoutRef<"input">) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePassword = () => {
@@ -39,4 +39,4 @@ function InputPassword({
   )
 }
 
-export { InputPassword }
+export default InputPassword

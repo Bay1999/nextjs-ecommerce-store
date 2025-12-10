@@ -10,17 +10,17 @@ import { Input } from "@/components/ui/input"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { useRegister } from "@/hooks/auth/useRegister"
 import { RegisterForm as TRegisterForm } from "@/types/auth";
-import { InputPassword } from "@/components/atoms/input-password"
+import InputPassword from "@/components/atoms/inputPassword"
 
 interface RegisterFormProps extends React.ComponentPropsWithoutRef<"form"> {
   handleToggle: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
-export function RegisterForm({
+const RegisterForm = ({
   handleToggle,
   className,
   ...props
-}: RegisterFormProps) {
+}: RegisterFormProps) => {
 
   const {
     register,
@@ -133,3 +133,5 @@ export function RegisterForm({
     </form>
   )
 }
+
+export default RegisterForm;
